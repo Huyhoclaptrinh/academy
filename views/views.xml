@@ -5,11 +5,28 @@
     <field name="res_model">academy.teacher</field>
   </record>
 
+  <record id="action_academy_lesson" model="ir.actions.act_window">
+    <field name="name">Lessons</field>
+    <field name="res_model">academy.lesson</field>
+  </record>
+
+  <record id="action_report_picking" model="ir.actions.report">
+    <field name="name">Lesson Operations</field>
+    <field name="model">product.template</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">product.report_picking</field>
+    <field name="report_file">product.report_picking_operations</field>
+    <field name="print_report_name">'Picking Operations - %s - %s' % (object.lesson_ids.name or '', object.name)</field>
+    <field name="binding_model_id" ref="model_academy_lesson"/>
+    <field name="binding_type">report</field>
+  </record>
+
   <record id="academy_teacher_form" model="ir.ui.view">
     <field name="name">Academy Teachers: Form</field>
     <field name="model">academy.teacher</field>
     <field name="arch" type="xml">
       <form>
+
         <sheet>
           <group>
             <field name="name"/>
@@ -20,6 +37,77 @@
                 <field name="name"/>
               </tree>
             </field>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="academy_course_form" model="ir.ui.view">
+    <field name="name">Academy Course</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_form_view"/>
+    <field name="arch" type="xml">
+      <form>
+        <field name="state" invisible="1"/>
+        <xpath expr="//field[@name='name']" position="after">
+          <button name="do_print_picking" string="Print" groups="academy.group_lesson_user" type="object" attrs="{'invisible': [('state', 'not in', ('assigned', 'partially_available'))]}"/>
+        </xpath>
+      </form>
+      <data>
+        <xpath expr="//notebook/page[@name='general_information']" position="before">
+          <page string="Lesson" name="lesson">
+            <field name="lesson_ids">
+              <tree string="Lesson" editable="bottom">
+                <field name="name"/>
+                <field name="predict_amount_hours"/>
+                <field name="course_video"/>
+                <field name="referances"/>
+                <field name="homework"/>
+              </tree>
+            </field>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="academy_lesson_tree" model="ir.ui.view">
+    <field name="name">Academy Lesson: Tree</field>
+    <field name="model">academy.lesson</field>
+    <field name="arch" type="xml">
+      <tree string="Lessons">
+        <field name="name"/>
+        <field name="predict_amount_hours"/>
+        <field name="course_video"/>
+        <field name="referances"/>
+        <field name="homework"/>
+<!--        <header>-->
+<!--          <button name="do_print_picking" string="Print" groups="academy.group_lesson_user" type="object" attrs="{'invisible': [('state', 'not in', ('assigned', 'partially_available'))]}"/>-->
+<!--        </header>-->
+      </tree>
+    </field>
+  </record>
+
+    <record id="academy_lesson_form" model="ir.ui.view">
+    <field name="name">Academy Lesson: Form</field>
+    <field name="model">academy.lesson</field>
+    <field name="arch" type="xml">
+      <form string="Lessons">
+
+        <field name="name" invisible="1"/>
+        <field name="predict_amount_hours" invisible="1"/>
+        <field name="course_video" invisible="1"/>
+        <field name="referances" invisible="1"/>
+        <field name="homework" invisible="1"/>
+
+        <sheet>
+          <group>
+            <field name="name" />
+            <field name="predict_amount_hours" />
+            <field name="course_video"/>
+            <field name="referances" />
+            <field name="homework" />
           </group>
         </sheet>
       </form>
@@ -74,8 +162,14 @@
 
   <menuitem sequence="0" id="menu_academy" name="Academy"/>
   <menuitem id="menu_academy_content" parent="menu_academy" name="Academy Content"/>
-<!--  <menuitem id="menu_academy_content_courses" parent="menu_academy_content"-->
-<!--            action="action_academy_course"/>-->
+  <menuitem id="menu_academy_lesson_content" parent="menu_academy" name="Academy Lesson"/>
+
   <menuitem id="menu_academy_content_teachers" parent="menu_academy_content"
             action="action_academy_teacher"/>
+
+  <menuitem id="menu_academy_content_lesson" parent="menu_academy_lesson_content"
+            action="action_academy_lesson" />
+
+  <!--  <menuitem id="menu_academy_content_courses" parent="menu_academy_content"-->
+<!--            action="action_academy_course"/>-->
 </odoo>
