@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "academy",
+    'name': "Academy",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -10,7 +10,7 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "Huy",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -20,12 +20,13 @@
     'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website_sale'],
+    'depends': ['base', 'website_sale','sales_team'],
 
     # always loaded
     'data': [
         'security/academy_security.xml',
         'security/ir.model.access.csv',
+        'report/course_report_templates.xml',
         'views/views.xml',
         'views/templates.xml',
         'data/data.xml',
