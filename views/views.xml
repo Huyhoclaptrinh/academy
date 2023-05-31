@@ -15,9 +15,7 @@
     <field name="model">academy.teacher</field>
     <field name="arch" type="xml">
       <form>
-<!--        <header>-->
-<!--          <button name="print_report" type="object" string="Print"></button>-->
-<!--        </header>-->
+
         <sheet>
           <group>
             <field name="name"/>
@@ -60,7 +58,7 @@
                 <field name="name"/>
                 <field name="predict_amount_hours"/>
                 <field name="course_video"/>
-                <field name="referances"/>
+                <field name="references"/>
                 <field name="homework"/>
               </tree>
             </field>
@@ -91,7 +89,7 @@
         <field name="name"/>
         <field name="predict_amount_hours"/>
         <field name="course_video"/>
-        <field name="referances"/>
+        <field name="references"/>
         <field name="homework"/>
       </tree>
     </field>
@@ -106,7 +104,7 @@
         <field name="name" invisible="1"/>
         <field name="predict_amount_hours" invisible="1"/>
         <field name="course_video" invisible="1"/>
-        <field name="referances" invisible="1"/>
+        <field name="references" invisible="1"/>
         <field name="homework" invisible="1"/>
 
         <sheet>
@@ -114,7 +112,7 @@
             <field name="name" />
             <field name="predict_amount_hours" />
             <field name="course_video"/>
-            <field name="referances" />
+            <field name="references"/>
             <field name="homework" />
           </group>
         </sheet>

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields
-from odoo.odoo import api
 
 
 class Teacher(models.Model):
@@ -12,10 +11,6 @@ class Teacher(models.Model):
     biography = fields.Html()
 
     course_ids = fields.One2many('product.template', 'teacher_id', string="Courses")
-
-    @api.model_create_multi
-    def print_report(self):
-        return self.env.ref('academy.report_course_label').report_action(self)
 
 
 class Course(models.Model):
@@ -34,7 +29,7 @@ class Lesson(models.Model):
     name = fields.Char()
     predict_amount_hours = fields.Integer()
     course_video = fields.Char()
-    referances = fields.Binary(string='Upload References')
+    references = fields.Binary(string='Upload References')
     homework = fields.Binary(string='Upload homework')
     course_id = fields.Many2one('product.template', string="Course")
 
