@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields
+from odoo.odoo import api
 
 
 class Teacher(models.Model):
@@ -11,6 +12,10 @@ class Teacher(models.Model):
     biography = fields.Html()
 
     course_ids = fields.One2many('product.template', 'teacher_id', string="Courses")
+
+    @api.model_create_multi
+    def print_report(self):
+        return self.env.ref('academy.report_course_label').report_action(self)
 
 
 class Course(models.Model):

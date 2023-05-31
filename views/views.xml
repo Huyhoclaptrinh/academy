@@ -15,7 +15,9 @@
     <field name="model">academy.teacher</field>
     <field name="arch" type="xml">
       <form>
-
+<!--        <header>-->
+<!--          <button name="print_report" type="object" string="Print"></button>-->
+<!--        </header>-->
         <sheet>
           <group>
             <field name="name"/>
