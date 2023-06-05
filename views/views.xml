@@ -57,8 +57,8 @@
               <tree string="Lesson" editable="bottom">
                 <field name="name"/>
                 <field name="predict_amount_hours"/>
-                <field name="course_video"/>
-                <field name="references"/>
+                <field name="course_video" widget ="url"/>
+                <field name="references" widget="many2many_binary"/>
                 <field name="homework"/>
               </tree>
             </field>
@@ -88,8 +88,8 @@
       <tree string="Lessons">
         <field name="name"/>
         <field name="predict_amount_hours"/>
-        <field name="course_video"/>
-        <field name="references"/>
+        <field name="course_video" widget ="url"/>
+        <field name="references" widget="many2many_binary"/>
         <field name="homework"/>
       </tree>
     </field>
@@ -111,8 +111,8 @@
           <group>
             <field name="name" />
             <field name="predict_amount_hours" />
-            <field name="course_video"/>
-            <field name="references"/>
+            <field name="course_video" widget ="url"/>
+            <field name="references" widget="many2many_binary"/>
             <field name="homework" />
           </group>
         </sheet>

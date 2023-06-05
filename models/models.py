@@ -29,7 +29,7 @@ class Lesson(models.Model):
     name = fields.Char()
     predict_amount_hours = fields.Integer()
     course_video = fields.Char()
-    references = fields.Binary(string='Upload References')
+    references = fields.Many2many(comodel_name='ir.attachment')
     homework = fields.Binary(string='Upload homework')
     course_id = fields.Many2one('product.template', string="Course")
 
